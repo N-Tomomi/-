@@ -17,9 +17,25 @@ header p {
   margin: 0;
 }
 
-header img {
+header .header-pic {
   width: 320px;
   vertical-align: bottom;
+}
+
+header #inu-icon {
+  width: 55px;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  display: none;
+  cursor: pointer;
+}
+
+header #hidden-message {
+  position: absolute;
+  top: 5px;
+  left: 117px;
+  display: none;
 }
 
 .btn {
