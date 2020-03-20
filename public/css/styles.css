@@ -55,10 +55,6 @@ header #hidden-message {
   opacity: 0.9;
 }
 
-.features img {
-  /* width: 100%; */
-}
-
 .features > h1 {
   text-align: center;
   padding: 64px 0;
