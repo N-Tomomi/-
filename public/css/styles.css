@@ -162,3 +162,21 @@ footer {
   margin: auto;
   text-align: center;
 }
+
+@media (min-width: 900px) {
+  .header-container {
+    display: flex;
+    width: 800px;
+    margin: 0 auto;
+  }
+
+  .header-container .info {
+    width: 60%;
+    align-self: center;
+  }
+
+  .header-container .header-pic-container {
+    width: 40%;
+  }
+
+}
