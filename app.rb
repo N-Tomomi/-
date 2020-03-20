@@ -10,3 +10,8 @@ get "/game1" do
   @title = "game1"
   erb :game1
 end
+
+get "/game2" do
+  @title = "game2"
+  erb :game2
+end
