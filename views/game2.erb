@@ -5,7 +5,7 @@
   <%# <meta name="viewport" content="width=device-width, initial-scale=1"> %>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <script type="text/javascript" src="js/enchant.js"></script>
+  <%# <script type="text/javascript" src="js/enchant.js"></script> %>
   <script type="text/javascript" src="js/game2enchant.js"></script>
 
   <style type="text/css">
@@ -16,11 +16,12 @@
   </style>
 
   <title><%= @title %></title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
-  <link rel="icon" href="img/favicon.ico">
+  <%# <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css"> %>
+  <%# <link rel="icon" href="img/favicon.ico"> %>
 </head>
 <body>
+
   <div class="container">
     <header>
       <img id="inu-icon-game2" src="img/inu.png">
@@ -33,12 +34,16 @@
           <a href="" class="btn">ダウンロード</a>
         </div>
         <div class="header-pic-container">
-          <img class="header-pic" src="img/game2.png">
+          <img class="header-pic" src="img/game2.jpeg">
         </div>
       </div>
     </header>
   </div>
-  <div id="page_top"><a href="#"></a></div>
+
+  <div class="game-main">
+    <div id="enchant-stage"></div>
+  </div>
+
   <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <script src="js/game2.js"></script>
 </body>

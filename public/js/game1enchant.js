@@ -38,7 +38,7 @@ window.onload = function() {
 
     bear1.addEventListener('enterframe', function() {
       this.x += 10;
-      if (this.x > 400) this.x = 0;
+      if (this.x > 320) this.x = 0;
   });
      
     core.rootScene.addChild(background);
