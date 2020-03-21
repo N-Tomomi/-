@@ -90,14 +90,41 @@ window.onload = function() {
       this.parentNode.removeChild(this);
     });
 
+    // gameover
+    var gameOverScene = new Scene();
+        gameOverScene.backgroundColor = '#f59a00';
+
+    var gameover_label = new Label("white");
+    gameover_label.x = 110;
+    gameover_label.y = 130;
+       //  gameover_label.text = "Game Over!!";
+    gameover_label.width = 120;
+    gameover_label.font = "normal normal 19px/1.0 monospace";
+    // gameover_label.text = ('Game Over        Your score: ' + score);
+    gameOverScene.addChild(gameover_label);
+
     core.on('enterframe', function() {
       timeLeft--;
       timeLabel.text = 'Time: ' + timeLeft;
       if (timeLeft <= 0) {
-          alert('Your score: ' + score);
+          // alert('Your score: ' + score);
+          this.pushScene(gameOverScene);
+          // alert('Your score: ' + score);
+          gameover_label.text = ('Game Over     Score: ' + score);
           this.stop();
+          // core.pushScene(gameOverScene);
+          //       core.stop();
       }
      });
+    
+
+    //  var gameover_label = new CenterLabel("white");
+    //  gameover_label.y = 150;
+    // //  gameover_label.text = "Game Over!!";
+    //  gameover_label.text = 'Game Over: Your score: ' + score ;
+    //  gameOverScene.addChild(gameover_label);
+
+
     
     // false bears/ Bear Class
     Bear = Class.create(Sprite,{
@@ -118,6 +145,16 @@ window.onload = function() {
             if (this.x <0 ) this.scaleX = 1;
           }
         })
+      } 
+    });
+    
+    // false bears/ StandingBear Class
+    StandingBear = Class.create(Sprite,{
+      initialize: function() {
+        Sprite.call(this,32,32);
+        this.image = core.assets['img/chara1.png'];
+        this.x = rand(300);
+        this.y = rand(300);
       } 
     });
     
@@ -175,16 +212,13 @@ window.onload = function() {
     bear9 = new Bear
     bear9.frame = [10, 11, 12];
     bear9.ontouchstart = function(){    
-      //frameアニメーション
       this.frame = 13;
       this.onenterframe = function(){    
-         //フェードアウト
          this.opacity  -= 0.07;
-         //フェードアウトが完了したらスプライトを削除
          if(this.opacity <= 0){
         this.parentNode.removeChild(this);
         }
-       }
+      }
     };
 
     bear10 = new Bear
@@ -199,12 +233,62 @@ window.onload = function() {
       }
     };
 
+    // standing_bear
+    standing_bear1 = new StandingBear
+    standing_bear1.frame = [0, 1, 2];
+    standing_bear1.ontouchstart = function(){    
+      this.frame = 3;
+      this.onenterframe = function(){    
+         this.opacity  -= 0.07;
+         if(this.opacity <= 0){
+        this.parentNode.removeChild(this);
+        }
+      }
+    };
+
+    standing_bear2 = new StandingBear
+    standing_bear2.frame = [0, 1, 2];
+    standing_bear2.ontouchstart = function(){    
+      this.frame = 3;
+      this.onenterframe = function(){    
+         this.opacity  -= 0.07;
+         if(this.opacity <= 0){
+        this.parentNode.removeChild(this);
+        }
+      }
+    };
+
+    standing_bear3 = new StandingBear
+    standing_bear3.frame = [5, 6];
+    standing_bear1.ontouchstart = function(){    
+      this.frame = 8;
+      this.onenterframe = function(){    
+         this.opacity  -= 0.07;
+         if(this.opacity <= 0){
+        this.parentNode.removeChild(this);
+        }
+      }
+    };
+
+    standing_bear4 = new StandingBear
+    standing_bear4.frame = [10, 11, 12];
+    standing_bear1.ontouchstart = function(){    
+      this.frame = 13;
+      this.onenterframe = function(){    
+         this.opacity  -= 0.07;
+         if(this.opacity <= 0){
+        this.parentNode.removeChild(this);
+        }
+      }
+    };
+
 
     core.rootScene.addChild(background);
     core.rootScene.addChild(scoreLabel);
     core.rootScene.addChild(timeLabel);
     core.rootScene.addChild(real_bear);
     core.rootScene.addChild(apples);
+
     core.rootScene.addChild(bear1);
     core.rootScene.addChild(bear2);
     core.rootScene.addChild(bear3);
@@ -215,6 +299,11 @@ window.onload = function() {
     core.rootScene.addChild(bear8);
     core.rootScene.addChild(bear9);
     core.rootScene.addChild(bear10);
+
+    core.rootScene.addChild(standing_bear1);
+    core.rootScene.addChild(standing_bear2);
+    core.rootScene.addChild(standing_bear3);
+    core.rootScene.addChild(standing_bear4);
       
   }
       
