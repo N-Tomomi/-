@@ -1,7 +1,6 @@
 enchant();
 
 window.onload = function() {
-  // console.log('hello enchant');
 
   // ファンクション作成
   var moveStageToCenter = function(core) {
@@ -29,18 +28,25 @@ window.onload = function() {
 
   core.onload = function() {
 
-    var background = new Sprite(320, 320);  //  320*320 サイズの オブジェクトを生成
+    var background = new Sprite(320, 320);  //  320*320 画面サイズ
         background.image = core.assets['img/mushroom-pattern.jpeg'] 
         background.x = 0;
         background.y = 0;
 
     var score = 0;
+    var timeLeft = 15 * core.fps;
 
     var scoreLabel = new Label('Score: 0');
     scoreLabel.x = 200;
     scoreLabel.y = 7;
     scoreLabel.color = "red";
     scoreLabel.font = "normal normal 19px/1.0 monospace";
+
+    var timeLabel = new Label('Time: ?');
+        timeLabel.x = 10;
+        timeLabel.y = 7;
+        timeLabel.color = "blue";
+        timeLabel.font = "normal normal 19px/1.0 monospace";
 
     // ご褒美りんご
     var apples = new Sprite(16,16);
@@ -68,45 +74,66 @@ window.onload = function() {
     });
 
     real_bear.on('touchstart', function(){
-      // score++;
-      // scoreLabel.text ='Score: ' + score;
       this.x = rand(300);
       this.y = rand(300);
+      this.frame = rand(8);
+      core.rootScene.addChild(apples);
       apples.x = rand(300);
       apples.y = rand(300);
     });
+
+    // りんごクリック
+    apples.on('touchstart', function(){
+      score++;
+      scoreLabel.text ='Score: ' + score;
     
-    // false bears
+      this.parentNode.removeChild(this);
+    });
+
+    core.on('enterframe', function() {
+      timeLeft--;
+      timeLabel.text = 'Time: ' + timeLeft;
+      if (timeLeft <= 0) {
+          alert('Your score: ' + score);
+          this.stop();
+      }
+     });
+    
+    // false bears/ Bear Class
     Bear = Class.create(Sprite,{
       initialize: function() {
         Sprite.call(this,32,32);
         this.image = core.assets['img/chara1.png'];
-      }
+        this.x = rand(300);
+        this.y = rand(300);
+        
+        // クマ左右端から端まで歩かせる
+        this.addEventListener('enterframe', function() {
+          if (this.scaleX == 1) {
+            this.x += rand(7);
+            if (this.x > 320 -32) this.scaleX = -1;
+          }
+          else {
+            this.x -= rand(7);
+            if (this.x <0 ) this.scaleX = 1;
+          }
+        })
+      } 
     });
     
     // bear1 frameで動きつけている
     bear1 = new Bear
-    bear1.x = 0;
-    bear1.y = 320 - 32;
     bear1.frame = [0, 1, 2];
 
     // bear touchedで姿を変える
     bear2 = new Bear
-    bear2.x = 32;
-    bear2.y = 320 - 64;
     bear2.frame = [5, 6];
     bear2.addEventListener('touchend', function() {
       this.frame = 8;
     });
 
     bear3 = new Bear
-    bear3.x = 66;
-    bear3.y = 320 - 96;
     bear3.frame = [0, 1, 2];
-    bear3.addEventListener('enterframe', function() {
-      this.x += 2;
-      if (this.x > 320) this.x = 0;
-    });
     bear3.ontouchstart = function(){    
       //frameアニメーション
       this.frame = 3;
@@ -120,14 +147,74 @@ window.onload = function() {
        }
     };
 
-     
+    bear4 = new Bear
+    bear4.frame = [10, 11, 12];
+    bear4.scaleX = -1;
+    bear4.scaleY = 1;
+
+    bear5 = new Bear
+    bear5.frame = [10, 11, 12];
+    bear5.scaleX = -1;
+    bear5.scaleY = 1;
+
+    bear6 = new Bear
+    bear6.frame = [5, 6, 7];
+    bear6.scaleX = -1;
+    bear6.scaleY = 1;
+
+    bear7 = new Bear
+    bear7.frame = 4;
+    bear7.scaleX = -1;
+    bear7.scaleY = 1;
+
+    bear8 = new Bear
+    bear8.frame = 4;
+    bear8.scaleX = -1;
+    bear8.scaleY = 1;
+
+    bear9 = new Bear
+    bear9.frame = [10, 11, 12];
+    bear9.ontouchstart = function(){    
+      //frameアニメーション
+      this.frame = 13;
+      this.onenterframe = function(){    
+         //フェードアウト
+         this.opacity  -= 0.07;
+         //フェードアウトが完了したらスプライトを削除
+         if(this.opacity <= 0){
+        this.parentNode.removeChild(this);
+        }
+       }
+    };
+
+    bear10 = new Bear
+    bear10.frame = [5, 6, 7];
+    bear10.ontouchstart = function(){    
+      this.frame = 8;
+      this.onenterframe = function(){    
+         this.opacity  -= 0.07;
+         if(this.opacity <= 0){
+        this.parentNode.removeChild(this);
+        }
+      }
+    };
+
+
     core.rootScene.addChild(background);
     core.rootScene.addChild(scoreLabel);
+    core.rootScene.addChild(timeLabel);
     core.rootScene.addChild(real_bear);
     core.rootScene.addChild(apples);
     core.rootScene.addChild(bear1);
     core.rootScene.addChild(bear2);
     core.rootScene.addChild(bear3);
+    core.rootScene.addChild(bear4);
+    core.rootScene.addChild(bear5);
+    core.rootScene.addChild(bear6);
+    core.rootScene.addChild(bear7);
+    core.rootScene.addChild(bear8);
+    core.rootScene.addChild(bear9);
+    core.rootScene.addChild(bear10);
       
   }
       
@@ -140,7 +227,4 @@ window.onload = function() {
 // function rand(n) {
 //   return Math.floor(Math.random() * (n + 1));
 // }
-
-
-
 
