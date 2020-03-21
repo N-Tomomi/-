@@ -31,6 +31,15 @@ header #inu-icon, #inu-icon-game1, #inu-icon-game2{
   cursor: pointer;
 }
 
+.cat-icon {
+  width: 55px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+}
+
+
 header #hidden-message, #hidden-message-to-game2, #hidden-message-to-game1 {
   position: absolute;
   top: 5px;
@@ -66,20 +75,21 @@ header #hidden-message-to-game2, #hidden-message-to-game1 {
 }
 
 /* games */
-/* <div class="game-main">
-    <div id="enchant-stage"></div>
-  </div> */
-/* .game-main {
-  margin-top: 100px;
-  width: 100%;
-  height: 60%; 
-  /* background-color: pink; */ 
-  /* position: relative;
-}
 
-#enchant-stage {
+/* .game-main {
+  position: relative;
+}  */
+/* .enchant-stage {
+  position: relative;
+} */
+
+/* .apples {
   position: absolute;
-} */ 
+  top: 40px;
+  left: 40px;
+} */
+
+
 
 .features > h1 {
   text-align: center;
