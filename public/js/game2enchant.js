@@ -1,8 +1,6 @@
 enchant();
 
 window.onload = function() {
-  console.log('hello enchant2');
-
   // ファンクション作成
   var moveStageToCenter = function(core) {
     var stagePos = {
@@ -24,33 +22,114 @@ window.onload = function() {
   
   core.preload('img/chara1.png',
                'img/game2-background.png',
-               'img/icon0.png');
+               'img/icon0.png',
+               'img/map0.gif');
   core.fps = 15;
   core.onload = function() {
     
     // background
-    var background = new Sprite(320, 320);  //  320*320 サイズの オブジェクトを生成
-        background.image = core.assets['img/game2-background.png'] 
-        background.x = 0;
-        background.y = 0;
+    // var background = new Sprite(320, 320);  //  320*320 サイズの オブジェクトを生成
+    //     background.image = core.assets['img/game2-background.png'] 
+    //     background.x = 0;
+    //     background.y = 0;
+
+    // mapData
+    var backgroundMap = new Map(16, 16);
+    backgroundMap.image = core.assets['img/map0.gif'];
+    backgroundMap.loadData([
+    [7,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,28],
+    [7,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,82,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,82,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,82,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,82,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,82,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,38,38,38,38,38,38,38,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,27,27,82,82,82,82,82,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,81,96,81,81,81,98,82,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,96,96,96,81,81,98,82,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,96,96,96,81,81,98,82,81,81,81,81,81,81,81,81,81,81,81,1],
+    [7,29,96,96,81,81,81,81,81,81,81,81,81,81,81,81,81,81,81,1],
+    [23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,28]
+],[
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1],
+    [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+]);
+    backgroundMap.collisionData = [
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+];
+
+
 
     // label
     var label = new Label();
-        label.x = 280;
-        label.y = 5;
-        label.color = 'red';
-        label.font = '14px "Arial"';
+        label.x = 265;
+        label.y = 17;
+        label.color = 'pink';
+        label.font = '17px "Arial"';
         label.text = '0';
 
     label.on('enterframe', function() {
       label.text = (core.frame / core.fps).toFixed(2);
     });
 
+    //  shot
+    const shotInterval = 15;    //弾の発射間隔
+    const shotSpeed = 5;    //弾の速さ（１フレームに何px動くか）
+
     // leading-chara-bear 
     var bear1 = new Sprite(32, 32);
     bear1.image = core.assets['img/chara1.png'];
-    bear1.x = 0;
-    bear1.y = 0;
+    // bear1.x = 15;
+    // bear1.y = 15;
+    bear1.moveTo(120, 120);
+    bear1.frame = 2;
+    // bear1.walk = [0,1,0,2];
+    bear1.time = 0;
+
 
     bear1.addEventListener('enterframe', function() {
     //   this.x += 2;
@@ -61,61 +140,96 @@ window.onload = function() {
     if (core.input.down) this.y += 5;
     });
 
+
+    bear1.onenterframe = function () {  //毎フレーム毎に実行する関数
+      this.time++;    //フレーム毎にtimeを加算する
+      if (this.time % shotInterval == 0) {    //shotIntervalフレーム経ったら弾発射
+          const bullet = createBullet(this);  //弾を自分の座標に設置
+          // scene.addChild(bullet); //sceneに弾を貼り付ける
+          core.rootScene.addChild(bullet);
+      }
+    }
+    // scene.addChild(blackRect);  //sceneに黒四角を貼り付ける
+    
+    //TIPS:引数のspriteを発射元にして赤四角の弾を作成して返す関数
+    function createBullet(bear1) {
+      const bullet = new Sprite(8, 8);   //width:8px,height:8pxのSpriteを設置
+      bullet.moveTo(bear1.x + 11, bear1.y + 17);  //発射元の座標に弾を合わせる
+      bullet.backgroundColor = "#ff0000"; //赤に設定
+      bullet.onenterframe = function () { //毎フレーム毎に実行する関数
+          this.x += shotSpeed;    //真yokoに向けて移動する
+          if (bullet.x <= -30 || bullet.x >= 320 || bullet.y <= -30 || bullet.y >= 320) { //画面外か判定
+              this.parentNode.removeChild(this);  //画面外なら自身を削除する
+          }
+      }
+      return bullet; //上で作成したspriteを返す
+    }
+    
+
+    // // memo
+    // function collisionCheck(backgroundMap,bear1){
+    // if(backgroundMap.hitTest(bear1.x+32 ,bear1.y + 16 )){
+    //   console.log("通れない："+ (bear1.x + 32));  
+    //   return true;
+    // }else{
+    //   return false;
+    // }
+    // }
+    // collisionCheck(backgroundMap,bear1);
+
+
+
+
+
     // items(apples)
     Apple = Class.create(Sprite,{
       initialize: function() {
         Sprite.call(this,16,16);
         this.image = core.assets['img/icon0.png'];
+        this.frame = 15;
       }
     });
 
     apple1 = new Apple
-    apple1.x = 0;
-    apple1.y = 304;
-    apple1.frame = 15;
-
+    apple1.x = 32;
+    apple1.y = 288;
+    
     apple2 = new Apple
-    apple2.x = 0;
-    apple2.y = 288;
-    apple2.frame = 15;
+    apple2.x = 32;
+    apple2.y = 272;
 
     apple3 = new Apple
-    apple3.x = 0;
-    apple3.y = 272;
-    apple3.frame = 15;
+    apple3.x = 32;
+    apple3.y = 256;
 
     apple4 = new Apple
-    apple4.x = 16;
-    apple4.y = 304;
-    apple4.frame = 15;
+    apple4.x = 48;
+    apple4.y = 288;
 
     apple5 = new Apple
-    apple5.x = 16;
-    apple5.y = 288;
-    apple5.frame = 15;
+    apple5.x = 48;
+    apple5.y = 272;
 
     apple6 = new Apple
-    apple6.x = 16;
-    apple6.y = 272;
-    apple6.frame = 15;
+    apple6.x = 48;
+    apple6.y = 256;
 
     apple7 = new Apple
-    apple7.x = 32;
-    apple7.y = 304;
-    apple7.frame = 15;
+    apple7.x = 64;
+    apple7.y = 288;
 
     apple8 = new Apple
-    apple8.x = 32;
-    apple8.y = 288;
-    apple8.frame = 15;
+    apple8.x = 64;
+    apple8.y = 272;
 
     apple9 = new Apple
-    apple9.x = 32;
-    apple9.y = 272;
-    apple9.frame = 15;
+    apple9.x = 64;
+    apple9.y = 256;
 
-     
-    core.rootScene.addChild(background);
+    // core.rootScene.addChild(background);
+
+    core.rootScene.addChild(backgroundMap)
+
     core.rootScene.addChild(label);
     core.rootScene.addChild(bear1);
 
@@ -135,3 +249,29 @@ window.onload = function() {
   core.start();
 
 };
+
+
+
+// bear1.onenterframe = function () {  //毎フレーム毎に実行する関数
+//   this.time++;    //フレーム毎にtimeを加算する
+//   if (this.time % shotInterval == 0) {    //shotIntervalフレーム経ったら弾発射
+//       const bullet = createBullet(this);  //弾を自分の座標に設置
+//       // scene.addChild(bullet); //sceneに弾を貼り付ける
+//       core.rootScene.addChild(bullet);
+//   }
+// }
+// // scene.addChild(blackRect);  //sceneに黒四角を貼り付ける
+
+// //TIPS:引数のspriteを発射元にして赤四角の弾を作成して返す関数
+// function createBullet(bear1) {
+//   const bullet = new Sprite(8, 8);   //width:8px,height:8pxのSpriteを設置
+//   bullet.moveTo(bear1.x, bear1.y);  //発射元の座標に弾を合わせる
+//   bullet.backgroundColor = "#ff0000"; //赤に設定
+//   bullet.onenterframe = function () { //毎フレーム毎に実行する関数
+//       this.x += shotSpeed;    //真yokoに向けて移動する
+//       if (bullet.x <= -30 || bullet.x >= 320 || bullet.y <= -30 || bullet.y >= 320) { //画面外か判定
+//           this.parentNode.removeChild(this);  //画面外なら自身を削除する
+//       }
+//   }
+//   return bullet; //上で作成したspriteを返す
+// }
