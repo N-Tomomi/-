@@ -23,7 +23,8 @@ window.onload = function() {
   
   core.preload('img/chara1.png', 
                'img/mushroom-pattern.jpeg',
-               'img/icon0.png');
+               'img/icon0.png',
+               'img/map3.png');
   core.fps = 15;
 
   core.onload = function() {
@@ -97,10 +98,8 @@ window.onload = function() {
     var gameover_label = new Label("white");
     gameover_label.x = 110;
     gameover_label.y = 130;
-       //  gameover_label.text = "Game Over!!";
     gameover_label.width = 120;
     gameover_label.font = "normal normal 19px/1.0 monospace";
-    // gameover_label.text = ('Game Over        Your score: ' + score);
     gameOverScene.addChild(gameover_label);
 
     core.on('enterframe', function() {
@@ -111,16 +110,7 @@ window.onload = function() {
           gameover_label.text = ('Game Over     Score: ' + score);
           this.stop();
       }
-     });
-    
-
-    //  var gameover_label = new CenterLabel("white");
-    //  gameover_label.y = 150;
-    // //  gameover_label.text = "Game Over!!";
-    //  gameover_label.text = 'Game Over: Your score: ' + score ;
-    //  gameOverScene.addChild(gameover_label);
-
-
+    });
     
     // false bears/ Bear Class
     Bear = Class.create(Sprite,{
@@ -143,17 +133,6 @@ window.onload = function() {
         })
       } 
     });
-
-    Bonus = Class.create(Sprite,{
-      initialize: function() {
-        Sprite.call(this,32,32);
-        this.image = core.assets['img/chara1.png'];
-        this.x = rand(300);
-        this.y = rand(300);
-        // this.frame = 4;
-        // this.opacity = 0.5; 
-      } 
-    });
     
     // false bears/ StandingBear Class
     StandingBear = Class.create(Sprite,{
@@ -164,6 +143,24 @@ window.onload = function() {
         this.y = rand(300);
       } 
     });
+
+    // plants
+    Plants = Class.create(Sprite,{
+      initialize: function() {
+        Sprite.call(this,16,16);
+        this.image = core.assets['img/map3.png'];
+        this.x = rand(260);
+        this.y = rand(260);
+      } 
+    });
+
+    plant1 = new Plants
+    plant1.frame = 19;
+    plant2 = new Plants
+    plant2.frame = 19;
+    plant3 = new Plants
+    plant3.frame = 19;
+
     
     // bear1 frameで動きつけている
     bear1 = new Bear
@@ -175,20 +172,6 @@ window.onload = function() {
     bear2.addEventListener('touchend', function() {
       this.frame = 8;
     });
-
-    // bonusbear touchで姿を宝箱に変える
-    bonusBear1 = new Bonus
-    bonusBear1.frame = 4;
-    bonusBear1.addEventListener('enterframe', function() {
-      this.x += rand(3);
-      if (this.x > 320) this.x = 0;
-    });
-    // bonusBear1.addEventListener('touchend', function() {
-    //   console.log("touched!");
-    //   // apples.x = rand(300);
-    //   // apples.y = rand(300);
-    // });
-    
 
     bear3 = new Bear
     bear3.frame = [0, 1, 2];
@@ -309,6 +292,9 @@ window.onload = function() {
     core.rootScene.addChild(timeLabel);
     core.rootScene.addChild(real_bear);
     core.rootScene.addChild(apples);
+    core.rootScene.addChild(plant1);
+    core.rootScene.addChild(plant2);
+    core.rootScene.addChild(plant3);
 
     core.rootScene.addChild(bear1);
     core.rootScene.addChild(bear2);
@@ -321,13 +307,10 @@ window.onload = function() {
     core.rootScene.addChild(bear9);
     core.rootScene.addChild(bear10);
 
-    core.rootScene.addChild(bonusBear1);
-
     core.rootScene.addChild(standing_bear1);
     core.rootScene.addChild(standing_bear2);
     core.rootScene.addChild(standing_bear3);
-    core.rootScene.addChild(standing_bear4);
-      
+    core.rootScene.addChild(standing_bear4);    
   }
       
   core.start();
