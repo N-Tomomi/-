@@ -20,6 +20,7 @@ header p {
 header .header-pic {
   width: 320px;
   vertical-align: bottom;
+  /* z-index: 30; */
 }
 
 header #inu-icon, #inu-icon-game1, #inu-icon-game2{
@@ -30,6 +31,31 @@ header #inu-icon, #inu-icon-game1, #inu-icon-game2{
   display: none;
   cursor: pointer;
 }
+
+#inu-icon-backside {
+  width: 24px;
+  padding-left: 10px;
+  /* transform: rotate(27deg ); */
+  /* position: absolute;
+  bottom: 7px;
+  left: 10px; */
+  display: none;
+  cursor: pointer;
+  /* z-index: 10; */
+}
+/* 
+header .header-pic-container {
+  display: relative;
+} */
+
+/* header #inu-hide {
+  width: 55px;
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  display: block;
+  cursor: pointer;
+} */
 
 .cat-icon {
   width: 55px;
