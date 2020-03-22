@@ -107,13 +107,9 @@ window.onload = function() {
       timeLeft--;
       timeLabel.text = 'Time: ' + timeLeft;
       if (timeLeft <= 0) {
-          // alert('Your score: ' + score);
           this.pushScene(gameOverScene);
-          // alert('Your score: ' + score);
           gameover_label.text = ('Game Over     Score: ' + score);
           this.stop();
-          // core.pushScene(gameOverScene);
-          //       core.stop();
       }
      });
     
@@ -155,19 +151,7 @@ window.onload = function() {
         this.x = rand(300);
         this.y = rand(300);
         // this.frame = 4;
-        // this.opacity = 0.5;
-        
-        // クマ左右端から端まで歩かせる
-        this.addEventListener('enterframe', function() {
-          if (this.scaleX == 1) {
-            this.x += rand(7);
-            if (this.x > 320 -32) this.scaleX = -1;
-          }
-          else {
-            this.x -= rand(7);
-            if (this.x <0 ) this.scaleX = 1;
-          }
-        })
+        // this.opacity = 0.5; 
       } 
     });
     
@@ -194,16 +178,16 @@ window.onload = function() {
 
     // bonusbear touchで姿を宝箱に変える
     bonusBear1 = new Bonus
-    bonusBear1.frame = 8;
-    bonusBear1.ontouchstart = function(){    
-      this.onenterframe = function(){   
-        console.log('Hi bonus1');
-         this.opacity  -= 0.07;
-         if(this.opacity <= 0){
-        this.parentNode.removeChild(this);
-        }
-       }
-    };
+    bonusBear1.frame = 4;
+    bonusBear1.addEventListener('enterframe', function() {
+      this.x += rand(3);
+      if (this.x > 320) this.x = 0;
+    });
+    // bonusBear1.addEventListener('touchend', function() {
+    //   console.log("touched!");
+    //   // apples.x = rand(300);
+    //   // apples.y = rand(300);
+    // });
     
 
     bear3 = new Bear
@@ -296,7 +280,7 @@ window.onload = function() {
     };
 
     standing_bear3 = new StandingBear
-    standing_bear3.frame = [5, 6];
+    standing_bear3.frame = [5, 6, 7];
     standing_bear1.ontouchstart = function(){    
       this.frame = 8;
       this.onenterframe = function(){    
