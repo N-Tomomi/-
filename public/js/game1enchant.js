@@ -147,6 +147,29 @@ window.onload = function() {
         })
       } 
     });
+
+    Bonus = Class.create(Sprite,{
+      initialize: function() {
+        Sprite.call(this,32,32);
+        this.image = core.assets['img/chara1.png'];
+        this.x = rand(300);
+        this.y = rand(300);
+        // this.frame = 4;
+        // this.opacity = 0.5;
+        
+        // クマ左右端から端まで歩かせる
+        this.addEventListener('enterframe', function() {
+          if (this.scaleX == 1) {
+            this.x += rand(7);
+            if (this.x > 320 -32) this.scaleX = -1;
+          }
+          else {
+            this.x -= rand(7);
+            if (this.x <0 ) this.scaleX = 1;
+          }
+        })
+      } 
+    });
     
     // false bears/ StandingBear Class
     StandingBear = Class.create(Sprite,{
@@ -168,6 +191,20 @@ window.onload = function() {
     bear2.addEventListener('touchend', function() {
       this.frame = 8;
     });
+
+    // bonusbear touchで姿を宝箱に変える
+    bonusBear1 = new Bonus
+    bonusBear1.frame = 8;
+    bonusBear1.ontouchstart = function(){    
+      this.onenterframe = function(){   
+        console.log('Hi bonus1');
+         this.opacity  -= 0.07;
+         if(this.opacity <= 0){
+        this.parentNode.removeChild(this);
+        }
+       }
+    };
+    
 
     bear3 = new Bear
     bear3.frame = [0, 1, 2];
@@ -299,6 +336,8 @@ window.onload = function() {
     core.rootScene.addChild(bear8);
     core.rootScene.addChild(bear9);
     core.rootScene.addChild(bear10);
+
+    core.rootScene.addChild(bonusBear1);
 
     core.rootScene.addChild(standing_bear1);
     core.rootScene.addChild(standing_bear2);
