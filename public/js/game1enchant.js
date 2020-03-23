@@ -81,7 +81,29 @@ window.onload = function() {
       core.rootScene.addChild(apples);
       apples.x = rand(300);
       apples.y = rand(300);
+      plant1.frame = 25;
+      plant2.frame = 25;
+      plant3.frame = 25;
+      plant1.on('touchstart', function(){
+        score += 2;
+        scoreLabel.text ='Score: ' + score;
+      
+        this.parentNode.removeChild(this);
+      });
+      plant2.on('touchstart', function(){
+        score += 2;
+        scoreLabel.text ='Score: ' + score;
+      
+        this.parentNode.removeChild(this);
+      });
+      plant3.on('touchstart', function(){
+        score += 3;
+        scoreLabel.text ='Score: ' + score;
+      
+        this.parentNode.removeChild(this);
+      });
     });
+
 
     // りんごクリック
     apples.on('touchstart', function(){
@@ -161,32 +183,20 @@ window.onload = function() {
     plant3 = new Plants
     plant3.frame = 19;
 
-    
-    // bear1 frameで動きつけている
     bear1 = new Bear
     bear1.frame = [0, 1, 2];
+    bear1.scaleX = 1;
+    bear1.scaleY = 1;
 
-    // bear touchedで姿を変える
     bear2 = new Bear
-    bear2.frame = [5, 6];
-    bear2.addEventListener('touchend', function() {
-      this.frame = 8;
-    });
-
+    bear2.frame = [0, 1, 2];
+    bear2.scaleX = 1;
+    bear2.scaleY = 1;
+    
     bear3 = new Bear
-    bear3.frame = [0, 1, 2];
-    bear3.ontouchstart = function(){    
-      //frameアニメーション
-      this.frame = 3;
-      this.onenterframe = function(){    
-         //フェードアウト
-         this.opacity  -= 0.07;
-         //フェードアウトが完了したらスプライトを削除
-         if(this.opacity <= 0){
-        this.parentNode.removeChild(this);
-        }
-       }
-    };
+    bear3.frame = [10, 11, 12];
+    bear3.scaleX = 1;
+    bear3.scaleY = 1;
 
     bear4 = new Bear
     bear4.frame = [10, 11, 12];
@@ -215,29 +225,14 @@ window.onload = function() {
 
     bear9 = new Bear
     bear9.frame = [10, 11, 12];
-    bear9.ontouchstart = function(){    
-      this.frame = 13;
-      this.onenterframe = function(){    
-         this.opacity  -= 0.07;
-         if(this.opacity <= 0){
-        this.parentNode.removeChild(this);
-        }
-      }
-    };
+    bear8.scaleX = -1;
+    bear8.scaleY = 1;
 
     bear10 = new Bear
     bear10.frame = [5, 6, 7];
-    bear10.ontouchstart = function(){    
-      this.frame = 8;
-      this.onenterframe = function(){    
-         this.opacity  -= 0.07;
-         if(this.opacity <= 0){
-        this.parentNode.removeChild(this);
-        }
-      }
-    };
+    bear8.scaleX = -1;
+    bear8.scaleY = 1;
 
-    // standing_bear
     standing_bear1 = new StandingBear
     standing_bear1.frame = [0, 1, 2];
     standing_bear1.ontouchstart = function(){    
@@ -246,41 +241,42 @@ window.onload = function() {
         this.opacity  -= 0.07;
         if(this.opacity <= 0){
         this.parentNode.removeChild(this);
-        }
-        core.rootScene.addChild(apples);
-        apples.x = rand(300);
-        apples.y = rand(300);
+        } 
       }
+      core.rootScene.addChild(apples);
+      apples.x = rand(300);
+      apples.y = rand(300);
     };
-    
-    // standing_bear2 = new StandingBear
-    // standing_bear2.frame = [0, 1, 2];
-    // standing_bear2.ontouchstart = function(){  
-    //   this.frame = 3;
-    //   this.onenterframe = function(){    
-    //     this.opacity  -= 0.07;
-    //     if(this.opacity <= 0){
-    //     this.parentNode.removeChild(this);
-    //     }
-    //     core.rootScene.addChild(apples);
-    //     apples.x = rand(300);
-    //     apples.y = rand(300);
-    //   }
-    // };
 
-    // standing_bear3 = new StandingBear
-    // standing_bear3.frame= [5, 6, 7];
-    // standing_bear3.ontouchstart = function(){    
-    //   this.frame = 8;
-    // };
+    standing_bear2 = new StandingBear
+    standing_bear2.frame = [0, 1, 2];
+    standing_bear2.ontouchstart = function(){    
+      this.frame = 3;
+      this.onenterframe = function(){    
+        this.opacity  -= 0.07;
+        if(this.opacity <= 0){
+        this.parentNode.removeChild(this);
+        } 
+      }
+      core.rootScene.addChild(apples);
+      apples.x = rand(300);
+      apples.y = rand(300);
+    };
 
-    // standing_bear4 = new StandingBear
-    // standing_bear4.frame = [10, 11, 12];
-    // standing_bear4.ontouchstart = function(){   
-    //   this.frame = 13;
-
-    // };
-
+    standing_bear3 = new StandingBear
+    standing_bear3.frame = [5, 6, 7];
+    standing_bear3.ontouchstart = function(){    
+      this.frame = 8;
+      this.onenterframe = function(){    
+        this.opacity  -= 0.07;
+        if(this.opacity <= 0){
+        this.parentNode.removeChild(this);
+        } 
+      }
+      core.rootScene.addChild(apples);
+      apples.x = rand(300);
+      apples.y = rand(300);
+    };
 
     core.rootScene.addChild(background);
     core.rootScene.addChild(scoreLabel);
@@ -290,7 +286,7 @@ window.onload = function() {
     core.rootScene.addChild(plant1);
     core.rootScene.addChild(plant2);
     core.rootScene.addChild(plant3);
-
+    
     core.rootScene.addChild(bear1);
     core.rootScene.addChild(bear2);
     core.rootScene.addChild(bear3);
@@ -303,18 +299,10 @@ window.onload = function() {
     core.rootScene.addChild(bear10);
 
     core.rootScene.addChild(standing_bear1);
-    
+    core.rootScene.addChild(standing_bear2);
+    core.rootScene.addChild(standing_bear3);
     
   }
       
-  core.start();
-  
+  core.start(); 
 };
-
-// memo
-// ランダムで熊を出没させる
-// function rand(n) {
-//   return Math.floor(Math.random() * (n + 1));
-// }
-
-
