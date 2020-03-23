@@ -243,48 +243,43 @@ window.onload = function() {
     standing_bear1.ontouchstart = function(){    
       this.frame = 3;
       this.onenterframe = function(){    
-         this.opacity  -= 0.07;
-         if(this.opacity <= 0){
+        this.opacity  -= 0.07;
+        if(this.opacity <= 0){
         this.parentNode.removeChild(this);
         }
+        core.rootScene.addChild(apples);
+        apples.x = rand(300);
+        apples.y = rand(300);
       }
     };
+    
+    // standing_bear2 = new StandingBear
+    // standing_bear2.frame = [0, 1, 2];
+    // standing_bear2.ontouchstart = function(){  
+    //   this.frame = 3;
+    //   this.onenterframe = function(){    
+    //     this.opacity  -= 0.07;
+    //     if(this.opacity <= 0){
+    //     this.parentNode.removeChild(this);
+    //     }
+    //     core.rootScene.addChild(apples);
+    //     apples.x = rand(300);
+    //     apples.y = rand(300);
+    //   }
+    // };
 
-    standing_bear2 = new StandingBear
-    standing_bear2.frame = [0, 1, 2];
-    standing_bear2.ontouchstart = function(){    
-      this.frame = 3;
-      this.onenterframe = function(){    
-         this.opacity  -= 0.07;
-         if(this.opacity <= 0){
-        this.parentNode.removeChild(this);
-        }
-      }
-    };
+    // standing_bear3 = new StandingBear
+    // standing_bear3.frame= [5, 6, 7];
+    // standing_bear3.ontouchstart = function(){    
+    //   this.frame = 8;
+    // };
 
-    standing_bear3 = new StandingBear
-    standing_bear3.frame = [5, 6, 7];
-    standing_bear1.ontouchstart = function(){    
-      this.frame = 8;
-      this.onenterframe = function(){    
-         this.opacity  -= 0.07;
-         if(this.opacity <= 0){
-        this.parentNode.removeChild(this);
-        }
-      }
-    };
+    // standing_bear4 = new StandingBear
+    // standing_bear4.frame = [10, 11, 12];
+    // standing_bear4.ontouchstart = function(){   
+    //   this.frame = 13;
 
-    standing_bear4 = new StandingBear
-    standing_bear4.frame = [10, 11, 12];
-    standing_bear1.ontouchstart = function(){    
-      this.frame = 13;
-      this.onenterframe = function(){    
-         this.opacity  -= 0.07;
-         if(this.opacity <= 0){
-        this.parentNode.removeChild(this);
-        }
-      }
-    };
+    // };
 
 
     core.rootScene.addChild(background);
@@ -308,9 +303,8 @@ window.onload = function() {
     core.rootScene.addChild(bear10);
 
     core.rootScene.addChild(standing_bear1);
-    core.rootScene.addChild(standing_bear2);
-    core.rootScene.addChild(standing_bear3);
-    core.rootScene.addChild(standing_bear4);    
+    
+    
   }
       
   core.start();
@@ -322,4 +316,5 @@ window.onload = function() {
 // function rand(n) {
 //   return Math.floor(Math.random() * (n + 1));
 // }
+
 
