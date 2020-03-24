@@ -23,7 +23,8 @@ window.onload = function() {
   core.preload('img/chara1.png',
                'img/game2-background.png',
                'img/icon0.png',
-               'img/map0.gif');
+               'img/map0.gif',
+               'space3.png');
   core.fps = 15;
   core.onload = function() {
     
@@ -149,7 +150,6 @@ window.onload = function() {
           core.rootScene.addChild(bullet);
       }
     }
-    // scene.addChild(blackRect);  //sceneに黒四角を貼り付ける
     
     //TIPS:引数のspriteを発射元にして赤四角の弾を作成して返す関数
     function createBullet(bear1) {
@@ -164,23 +164,23 @@ window.onload = function() {
       }
       return bullet; //上で作成したspriteを返す
     }
-    
 
-    // // memo
-    // function collisionCheck(backgroundMap,bear1){
-    // if(backgroundMap.hitTest(bear1.x+32 ,bear1.y + 16 )){
-    //   console.log("通れない："+ (bear1.x + 32));  
-    //   return true;
-    // }else{
-    //   return false;
-    // }
-    // }
-    // collisionCheck(backgroundMap,bear1);
+    function rand(n) {
+      return Math.floor(Math.random() * (n + 1));
+    }
 
+    Enemy = Class.create(Sprite,{
+      initialize: function() {
+        Sprite.call(this,32,32);
+        this.image = core.assets['img/chara1.png'];
+        this.frame = 4;
+      }
+    });
 
-
-
-
+    enemy1 = new Enemy
+    enemy1.x = 100;
+    enemy1.y = 200;
+      
     // items(apples)
     Apple = Class.create(Sprite,{
       initialize: function() {
@@ -233,6 +233,8 @@ window.onload = function() {
     core.rootScene.addChild(label);
     core.rootScene.addChild(bear1);
 
+    core.rootScene.addChild(enemy1);
+
     // items
     core.rootScene.addChild(apple1);
     core.rootScene.addChild(apple2);
@@ -250,28 +252,3 @@ window.onload = function() {
 
 };
 
-
-
-// bear1.onenterframe = function () {  //毎フレーム毎に実行する関数
-//   this.time++;    //フレーム毎にtimeを加算する
-//   if (this.time % shotInterval == 0) {    //shotIntervalフレーム経ったら弾発射
-//       const bullet = createBullet(this);  //弾を自分の座標に設置
-//       // scene.addChild(bullet); //sceneに弾を貼り付ける
-//       core.rootScene.addChild(bullet);
-//   }
-// }
-// // scene.addChild(blackRect);  //sceneに黒四角を貼り付ける
-
-// //TIPS:引数のspriteを発射元にして赤四角の弾を作成して返す関数
-// function createBullet(bear1) {
-//   const bullet = new Sprite(8, 8);   //width:8px,height:8pxのSpriteを設置
-//   bullet.moveTo(bear1.x, bear1.y);  //発射元の座標に弾を合わせる
-//   bullet.backgroundColor = "#ff0000"; //赤に設定
-//   bullet.onenterframe = function () { //毎フレーム毎に実行する関数
-//       this.x += shotSpeed;    //真yokoに向けて移動する
-//       if (bullet.x <= -30 || bullet.x >= 320 || bullet.y <= -30 || bullet.y >= 320) { //画面外か判定
-//           this.parentNode.removeChild(this);  //画面外なら自身を削除する
-//       }
-//   }
-//   return bullet; //上で作成したspriteを返す
-// }
