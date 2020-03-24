@@ -22,7 +22,7 @@ header .header-pic {
   vertical-align: bottom;
 }
 
-header #inu-icon, #inu-icon-game1, #inu-icon-game2{
+header #inu-icon, #inu-icon-game1, #inu-icon-game2 {
   width: 55px;
   position: absolute;
   top: 5px;
@@ -40,7 +40,7 @@ header #inu-icon, #inu-icon-game1, #inu-icon-game2{
 }
 
 
-header #hidden-message, #hidden-message-to-game2, #hidden-message-to-game1 {
+header #hidden-message, #hidden-message-to-game2, #hidden-message-to-game1{
   position: absolute;
   top: 5px;
   left: 117px;

@@ -6,6 +6,11 @@ get "/" do
   erb :index
 end
 
+get "/info" do
+  @title = "制作情報"
+  erb :info
+end
+
 get "/game1" do
   @title = "game1"
   erb :game1
