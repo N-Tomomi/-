@@ -139,6 +139,20 @@ header #hidden-message-to-game2, #hidden-message-to-game1 {
   margin: 0 auto;
 }
 
+.main-info {
+  /* background-color: lightgray; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-info-contents {
+  /* background-color: lightpink; */
+  width: 50%;
+
+}
+
 footer {
   /* padding: 64px 0; */
   background-color: #323135;
