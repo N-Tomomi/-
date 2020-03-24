@@ -1,6 +1,7 @@
 enchant();
 
 window.onload = function() {
+
   // ファンクション作成
   var moveStageToCenter = function(core) {
     var stagePos = {
@@ -165,22 +166,6 @@ window.onload = function() {
       return bullet; //上で作成したspriteを返す
     }
 
-    function rand(n) {
-      return Math.floor(Math.random() * (n + 1));
-    }
-
-    Enemy = Class.create(Sprite,{
-      initialize: function() {
-        Sprite.call(this,32,32);
-        this.image = core.assets['img/chara1.png'];
-        this.frame = 4;
-      }
-    });
-
-    enemy1 = new Enemy
-    enemy1.x = 100;
-    enemy1.y = 200;
-      
     // items(apples)
     Apple = Class.create(Sprite,{
       initialize: function() {
@@ -233,7 +218,6 @@ window.onload = function() {
     core.rootScene.addChild(label);
     core.rootScene.addChild(bear1);
 
-    core.rootScene.addChild(enemy1);
 
     // items
     core.rootScene.addChild(apple1);
