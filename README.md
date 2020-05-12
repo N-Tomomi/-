@@ -16,9 +16,10 @@
 <img width="250" alt="Screenshot 2020-05-12 at 20 37 51" src="https://user-images.githubusercontent.com/61076281/81684323-d43a9800-9491-11ea-972f-f1fa2fa5ae4b.png">
 
 ### 仕様技術など
-<p align="center">
-  <a href="http://sinatrarb.com/"><img src="img/Sinatra.png" width="80px;" /></a>
-  <br>
-  <a href="https://github.com/wise9/enchant.js/"><img src="img/enchant.png" width="80px;" /></a>
-</p>
+
+[Sinatra](http://sinatrarb.com/)
+[enchant.js](https://github.com/wise9/enchant.js/)
+<img width="65" alt="Sinatra" src="https://user-images.githubusercontent.com/61076281/81690739-b3c10c80-9496-11ea-9fa3-fd8667169cb8.png">
+<img width="65" alt="enchant" src="https://user-images.githubusercontent.com/61076281/81690749-b7549380-9496-11ea-898e-cfc10d68cb04.png">
+
 
